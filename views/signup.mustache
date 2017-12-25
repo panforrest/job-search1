@@ -3,19 +3,25 @@
 {{>head}}
 
 <body>
-    <div>
+    <div class="container">
     	<h1>Job Search</h1>
     	<div>
             <h3>Sign Up</h3>
             <form action="/auth/register" method="post">
             	<input type="text" name="email" placeholder="Email" /><br />
             	<input type="text" name="password" placeholder="Password" /><br />
-            	<button type="submit">Submit</button>
+            	<button type="submit">Sign Up!</button>
 
             </form>
 
+            <h3>Log In</h3>
+            <form action="/auth/Login" method="post">
+            	<input type="text" name="email" placeholder="Email" /><br />
+            	<input type="text" name="password" placeholder="Password" /><br />
+            	<button type="submit">Log In!</button>
 
-    	</div>
+            </form>
+        </div>
 
     </div>
 </body>
