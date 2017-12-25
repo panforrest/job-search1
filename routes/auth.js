@@ -7,10 +7,24 @@ const router = vertex.router()
 	Data is rendered using the Mustache templating engine. For more
 	information, view here: https://mustache.github.io/#demo */
 router.post('/register', function(req, res){
-	res.json({
-		confirmation: 'success',
-		body: req.body
-	})
+	// res.json({
+	// 	confirmation: 'success',
+	// 	body: req.body
+	// })
+
+    turbo.createUser(req.body)
+    .then(data => {
+    	res.json({
+    		confirmation: 'success',
+    		data: data
+    	})
+    })
+    .catch(err => {
+    	res.json({
+    		confirmation: 'fail',
+    		message: err.message 
+    	})
+    })
 })
 
 module.exports = router
