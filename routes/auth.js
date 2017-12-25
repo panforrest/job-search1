@@ -27,6 +27,8 @@ router.post('/login', function(req, res){
 
     turbo.login(req.body)
     .then(data => {
+        req.vertexSession.user = {id: data.id} //SESSION IS ADDED
+
     	res.json({
     		confirmation: 'success',
     		data: data
@@ -39,5 +41,29 @@ router.post('/login', function(req, res){
     	})
     })
 })
+
+router.get('/currentuser', function(req, res){
+	if (req.vertexSession == null ){
+		res.json({
+			confirmation: 'success',
+			user: null
+		})
+		return
+	}
+
+	if (req.vertexSession.user == null ){
+		res.json({
+			confirmation: 'success',
+			user: null
+		})
+		return
+	}
+
+    res.json({
+    	confirmation: 'success',
+    	user: req.vertexSession.user
+    })
+
+})	
 
 module.exports = router
