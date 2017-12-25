@@ -59,9 +59,23 @@ router.get('/currentuser', function(req, res){
 		return
 	}
 
-    res.json({
-    	confirmation: 'success',
-    	user: req.vertexSession.user
+    // res.json({
+    // 	confirmation: 'success',
+    // 	user: req.vertexSession.user
+    // })
+
+    turbo.fetchOne('user', req.vertexSession.user.id)
+    .then(data => {
+    	res.json({
+    		confirmation: 'success',
+    		user: data
+    	})
+    })
+    .catch(err => {
+    	res.json({
+    		confirmation: 'fail',
+    		message: err.message
+    	})
     })
 
 })	
