@@ -29,7 +29,17 @@ class Admin extends Component {
 
     }
 
+    updateUsername(event){
+    	console.log('updateUsername: '+event.target.value)
+    }
+
+    updateUser(event){
+    	event.preventDefault()
+    	console.log('Update User!')
+    }
+
 	render(){
+		//WILL SEE BOTH 'NO CURRENT USER!' AND 'CURRENT USER IS: ' + JSON.stringify(currentUser)
         const currentUser = this.props.user.currentUser
         if (currentUser == null)
         	console.log('NO CURRENT USER!')
@@ -37,8 +47,21 @@ class Admin extends Component {
         	console.log('CURRENT USER IS: ' + JSON.stringify(currentUser))
 
 		return(
-			<div>
-			    This is the Admin Container! <br />
+			<div className="container">
+			    <h1>User Admin</h1>
+			    <hr />
+
+			    { (currentUser == null) ? null : (
+                    <form>
+				        <input type="text" onChange={this.updateUsername.bind(this)} defaultValue={currentUser.username} placeholder="Username" />
+				        <br />
+	                    <button onClick={this.updateUser.bind(this)}>Update User</button>
+				    </form>
+
+			    	)
+			    }
+
+					    
                 
 			</div>
 		)

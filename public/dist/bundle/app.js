@@ -27906,16 +27906,43 @@ var Admin = function (_Component) {
             });
         }
     }, {
+        key: 'updateUsername',
+        value: function updateUsername(event) {
+            console.log('updateUsername: ' + event.target.value);
+        }
+    }, {
+        key: 'updateUser',
+        value: function updateUser(event) {
+            event.preventDefault();
+            console.log('Update User!');
+        }
+    }, {
         key: 'render',
         value: function render() {
+            //WILL SEE BOTH 'NO CURRENT USER!' AND 'CURRENT USER IS: ' + JSON.stringify(currentUser)
             var currentUser = this.props.user.currentUser;
             if (currentUser == null) console.log('NO CURRENT USER!');else console.log('CURRENT USER IS: ' + JSON.stringify(currentUser));
 
             return _react2.default.createElement(
                 'div',
-                null,
-                'This is the Admin Container! ',
-                _react2.default.createElement('br', null)
+                { className: 'container' },
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'User Admin'
+                ),
+                _react2.default.createElement('hr', null),
+                currentUser == null ? null : _react2.default.createElement(
+                    'form',
+                    null,
+                    _react2.default.createElement('input', { type: 'text', onChange: this.updateUsername.bind(this), defaultValue: currentUser.username, placeholder: 'Username' }),
+                    _react2.default.createElement('br', null),
+                    _react2.default.createElement(
+                        'button',
+                        { onClick: this.updateUser.bind(this) },
+                        'Update User'
+                    )
+                )
             );
         }
     }]);
