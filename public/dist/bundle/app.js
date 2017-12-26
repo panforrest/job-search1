@@ -27880,7 +27880,10 @@ var Admin = function (_Component) {
     function Admin() {
         _classCallCheck(this, Admin);
 
-        return _possibleConstructorReturn(this, (Admin.__proto__ || Object.getPrototypeOf(Admin)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Admin.__proto__ || Object.getPrototypeOf(Admin)).call(this));
+
+        _this.state = {};
+        return _this;
     }
 
     _createClass(Admin, [{
@@ -27909,12 +27912,29 @@ var Admin = function (_Component) {
         key: 'updateUsername',
         value: function updateUsername(event) {
             console.log('updateUsername: ' + event.target.value);
+            this.setState({
+                username: event.target.value
+            });
         }
     }, {
         key: 'updateUser',
         value: function updateUser(event) {
             event.preventDefault();
             console.log('Update User!');
+            if (this.state.username == null) {
+                alert('No Changes Made!');
+                return;
+            }
+
+            _superagent2.default.post('/auth/update').send({ username: this.state.username }).set('Accept', 'application/json').end(function (err, response) {
+                if (err) {
+                    alert('Error: ' + err.message);
+                    return;
+                }
+
+                console.log('User Updated: ' + JSON.stringify(response.body));
+                alert('User Updated!');
+            });
         }
     }, {
         key: 'render',

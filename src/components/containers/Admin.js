@@ -4,6 +4,13 @@ import { connect } from 'react-redux'
 import actions from '../../actions'
 
 class Admin extends Component {
+    constructor(){
+    	super()
+    	this.state = {
+
+    	}
+    }
+
     componentDidMount(){
     	
     	//who is logged in here???
@@ -31,11 +38,31 @@ class Admin extends Component {
 
     updateUsername(event){
     	console.log('updateUsername: '+event.target.value)
+    	this.setState({
+    		username: event.target.value
+    	})
     }
 
     updateUser(event){
     	event.preventDefault()
     	console.log('Update User!')
+    	if (this.state.username == null){
+    		alert('No Changes Made!')
+    		return
+    	}
+
+    	superagent.post('/auth/update')
+    	.send({username: this.state.username})
+    	.set('Accept', 'application/json')
+    	.end((err, response) => {
+    		if (err) {
+    			alert('Error: ' + err.message)
+    			return
+    		}
+
+    		console.log('User Updated: ' + JSON.stringify(response.body))
+    		alert('User Updated!')
+    	})
     }
 
 	render(){

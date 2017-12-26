@@ -42,6 +42,39 @@ router.post('/login', function(req, res){
     })
 })
 
+router.post('/update', function(req, res){
+    if (req.vertexSession == null ){
+        res.json({
+            confirmation: 'fail',
+            message: 'user not logged in'
+        })
+        return
+    }
+
+    if (req.vertexSession.user == null ){
+        res.json({
+            confirmation: 'fail',
+            message: 'user not logged in'
+        })
+        return
+    }
+
+    turbo.updateUser(req.vertexSession.user.id, req.body)
+    .then(data => {
+        res.json({
+            confirmation: 'success',
+            user: data
+        })
+    })
+    .catch(err => {
+        res.json({
+            confirmation: 'fail',
+            message: err.message
+        })
+    })
+
+})
+
 router.get('/currentuser', function(req, res){
 	if (req.vertexSession == null ){
 		res.json({
