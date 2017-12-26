@@ -27954,7 +27954,8 @@ var Admin = function (_Component) {
                 _react2.default.createElement(
                     'h1',
                     null,
-                    'User Admin'
+                    'Welcome, ',
+                    currentUser == null ? '' : currentUser.username
                 ),
                 _react2.default.createElement('hr', null),
                 currentUser == null ? null : _react2.default.createElement(

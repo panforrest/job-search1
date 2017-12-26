@@ -78,7 +78,7 @@ class Admin extends Component {
 
 		return(
 			<div className="container">
-			    <h1>User Admin</h1>
+			    <h1>Welcome, {(currentUser == null) ? '' : currentUser.username}</h1>
 			    <hr />
 
 			    { (currentUser == null) ? null : (
