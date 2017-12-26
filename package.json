@@ -13,6 +13,7 @@
     "debug": "latest",
     "dotenv": "latest",
     "moment": "latest",
+    "nodemon": "latest",
     "react": "latest",
     "react-bootstrap": "latest",
     "react-dom": "latest",
@@ -21,9 +22,8 @@
     "react-time": "latest",
     "redux": "latest",
     "redux-thunk": "latest",
-    "superagent": "latest",
+    "superagent": "^3.8.2",
     "turbo360": "latest",
-    "nodemon": "latest",
     "vertex360": "latest"
   },
   "devDependencies": {
