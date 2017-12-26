@@ -27908,14 +27908,14 @@ var Admin = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var email = this.props.user.currentUser == null ? null : this.props.user.currentUser.email;
+            var currentUser = this.props.user.currentUser;
+            if (currentUser == null) console.log('NO CURRENT USER!');else console.log('CURRENT USER IS: ' + JSON.stringify(currentUser));
 
             return _react2.default.createElement(
                 'div',
                 null,
                 'This is the Admin Container! ',
-                _react2.default.createElement('br', null),
-                email
+                _react2.default.createElement('br', null)
             );
         }
     }]);

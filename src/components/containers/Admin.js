@@ -30,12 +30,16 @@ class Admin extends Component {
     }
 
 	render(){
-        const email = (this.props.user.currentUser == null) ? null: this.props.user.currentUser.email 
+        const currentUser = this.props.user.currentUser
+        if (currentUser == null)
+        	console.log('NO CURRENT USER!')
+        else 
+        	console.log('CURRENT USER IS: ' + JSON.stringify(currentUser))
 
 		return(
 			<div>
 			    This is the Admin Container! <br />
-                {email}
+                
 			</div>
 		)
 	}
