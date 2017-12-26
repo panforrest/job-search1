@@ -3,7 +3,7 @@ import superagent from 'superagent'
 
 class Admin extends Component {
     componentDidMount(){
-    	// console.log('componentDidMount:')
+    	
     	//who is logged in here???
         superagent.get('/auth/currentuser')
         .query(null)
@@ -14,12 +14,14 @@ class Admin extends Component {
                 return
             }
 
-            const data = response.body  //const data = response.body.data
-            console.log('componentDidMount: '+JSON.stringify(data))
+            const currentuser = response.body.user
+            if (currentuser == null){
+            	console.log('USER NOT LOGGED IN: ')
+            	return
+            }
 
-            // this.setState({
-            // 	jobs: data
-            // })
+            console.log('USER: '+JSON.stringify(currentuser))
+
         })
 
     }

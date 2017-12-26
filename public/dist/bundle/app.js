@@ -21340,7 +21340,7 @@ var Admin = function (_Component) {
     _createClass(Admin, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            // console.log('componentDidMount:')
+
             //who is logged in here???
             _superagent2.default.get('/auth/currentuser').query(null).set('Accept', 'application/json').end(function (err, response) {
                 if (err) {
@@ -21348,12 +21348,13 @@ var Admin = function (_Component) {
                     return;
                 }
 
-                var data = response.body; //const data = response.body.data
-                console.log('componentDidMount: ' + JSON.stringify(data));
+                var currentuser = response.body.user;
+                if (currentuser == null) {
+                    console.log('USER NOT LOGGED IN: ');
+                    return;
+                }
 
-                // this.setState({
-                // 	jobs: data
-                // })
+                console.log('USER: ' + JSON.stringify(currentuser));
             });
         }
     }, {
