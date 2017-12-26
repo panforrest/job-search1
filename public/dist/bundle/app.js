@@ -26481,27 +26481,30 @@ exports.userReducer = _userReducer2.default; /* * * * * * * * * * * * * * * * * 
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 var initialState = {
-    currentUser: null
+  currentUser: null
 };
 
 exports.default = function () {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-    var action = arguments[1];
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
 
 
-    switch (action.type) {
-        case 'CURRENT_USER_RECEIVED':
+  var newState = Object.assign({}, state);
 
-            console.log('CURRENT_USER_RECEIVED:');
-            return state;
+  switch (action.type) {
+    case 'CURRENT_USER_RECEIVED':
 
-        default:
-            return state;
+      console.log('CURRENT_USER_RECEIVED:' + JSON.stringify(action.data));
+      newState['currentUser'] = action.data;
+      return newState;
 
-    }
+    default:
+      return state;
+
+  }
 };
 
 /***/ }),
@@ -27905,10 +27908,14 @@ var Admin = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
+            var email = this.props.user.currentUser == null ? null : this.props.user.currentUser.email;
+
             return _react2.default.createElement(
                 'div',
                 null,
-                'This is the Admin Container!'
+                'This is the Admin Container! ',
+                _react2.default.createElement('br', null),
+                email
             );
         }
     }]);
@@ -27917,7 +27924,9 @@ var Admin = function (_Component) {
 }(_react.Component);
 
 var stateToProps = function stateToProps(state) {
-    return {};
+    return {
+        user: state.user
+    };
 };
 
 var dispatchToProps = function dispatchToProps(dispatch) {

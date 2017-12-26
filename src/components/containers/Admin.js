@@ -30,10 +30,12 @@ class Admin extends Component {
     }
 
 	render(){
+        const email = (this.props.user.currentUser == null) ? null: this.props.user.currentUser.email 
+
 		return(
 			<div>
-			    This is the Admin Container!
-
+			    This is the Admin Container! <br />
+                {email}
 			</div>
 		)
 	}
@@ -41,7 +43,7 @@ class Admin extends Component {
 
 const stateToProps = (state) => {
     return {
-       
+        user: state.user
     }
 }
 
