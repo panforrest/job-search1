@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import superagent from 'superagent'
+import { connect } from 'react-redux'
+import actions from '../../actions'
 
 class Admin extends Component {
     componentDidMount(){
@@ -21,6 +23,7 @@ class Admin extends Component {
             }
 
             console.log('USER: '+JSON.stringify(currentuser))
+            this.props.currentUserReceived(currentuser)
 
         })
 
@@ -30,9 +33,22 @@ class Admin extends Component {
 		return(
 			<div>
 			    This is the Admin Container!
+
 			</div>
 		)
 	}
 }
 
-export default Admin
+const stateToProps = (state) => {
+    return {
+       
+    }
+}
+
+const dispatchToProps = (dispatch) => {
+    return {
+    	currentUserReceived: (user) = dispatch(actions.currentUserReceived(user))
+    }
+}
+
+export default connect(stateToProps, dispatchToProps)(Admin)
