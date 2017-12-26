@@ -47,7 +47,7 @@ const stateToProps = (state) => {
 
 const dispatchToProps = (dispatch) => {
     return {
-    	currentUserReceived: (user) = dispatch(actions.currentUserReceived(user))
+    	currentUserReceived: (user) => dispatch(actions.currentUserReceived(user))
     }
 }
 

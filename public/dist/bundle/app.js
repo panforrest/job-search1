@@ -27922,7 +27922,9 @@ var stateToProps = function stateToProps(state) {
 
 var dispatchToProps = function dispatchToProps(dispatch) {
     return {
-        currentUserReceived: user = dispatch(_actions2.default.currentUserReceived(user))
+        currentUserReceived: function currentUserReceived(user) {
+            return dispatch(_actions2.default.currentUserReceived(user));
+        }
     };
 };
 
