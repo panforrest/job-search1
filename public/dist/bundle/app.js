@@ -27919,6 +27919,8 @@ var Admin = function (_Component) {
     }, {
         key: 'updateUser',
         value: function updateUser(event) {
+            var _this3 = this;
+
             event.preventDefault();
             console.log('Update User!');
             if (this.state.username == null) {
@@ -27933,6 +27935,9 @@ var Admin = function (_Component) {
                 }
 
                 console.log('User Updated: ' + JSON.stringify(response.body));
+                var currentUser = response.body.user;
+                _this3.props.currentUserReceived(currentUser);
+
                 alert('User Updated!');
             });
         }

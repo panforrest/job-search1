@@ -61,6 +61,9 @@ class Admin extends Component {
     		}
 
     		console.log('User Updated: ' + JSON.stringify(response.body))
+    		const currentUser = response.body.user
+            this.props.currentUserReceived(currentUser)
+
     		alert('User Updated!')
     	})
     }
